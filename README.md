@@ -1,2 +1,2 @@
 # vueJS
-learning vueJS
+learning vueJS!
