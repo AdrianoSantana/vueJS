@@ -1,0 +1,25 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+  <p>
+    {{ titulo }}
+  </p>
+  <p>
+    {{ saudacao() }}
+    <!-- Chamando uma função que foi definida em methods -->
+  </p>
+</div>
+
+<script>
+  new Vue({
+    el: '#app', //Elemento que queremos controlar
+    data: { //Dados que passaremos para o DOM
+      titulo: 'Usando vueJS!',
+    },
+    methods: {
+      saudacao: function() {
+        return this.titulo + ' Bom dia!'
+      }
+    }
+  })
+</script>
