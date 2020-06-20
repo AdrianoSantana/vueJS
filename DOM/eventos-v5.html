@@ -1,0 +1,48 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!--
+  Eventos de teclado
+-->
+<div id="app">
+  <p>
+    {{ contador }}
+  </p>
+  <p>
+    <button id="somar1" v-on:click="somar(5,$event)">Adicionar</button>
+  </p>
+  <p v-on:mousemove="atualizarXY">
+    Mouse: {{x}} e {{y}}
+    <span v-on:mousemove.stop>PARAR EVENTO MOUSE</span>
+  </p>
+  <div>
+    <input type="text" v-on:keyup.enter="alerta" name="my_name" id="">
+  </div>
+
+
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      contador: 0,
+      x: 0,
+      y: 0,
+    },
+
+    methods: {
+      somar(passo, event) {
+        this.contador += passo
+      },
+      atualizarXY(event) {
+        this.x = event.clientX
+        this.y = event.clientY
+      },
+      alerta() {
+        alert('Este é um alerta!')
+      },
+      // parar(event){
+      //   event.stopPropagation()
+      // }
+    }
+  })
+</script>
