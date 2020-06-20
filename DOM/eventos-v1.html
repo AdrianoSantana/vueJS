@@ -4,13 +4,21 @@
   <p>
     {{ contador }}
   </p>
+  <p>
+    <button id="somar1" v-on:click="somar">Adicionar</button>
+  </p>
 </div>
 
 <script>
   new Vue({
     el:'#app',
     data: {
-      contador: 'Aqui vai um titulo!'
+      contador: 0
+    },
+    methods: {
+      somar() {
+        this.contador++
+      }
     }
   })
 </script>
