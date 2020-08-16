@@ -1,0 +1,69 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!--
+    Usa-se # para definir estilos para um id
+    Usa-se . para definir estilos para uma classe
+  -->
+<style>
+  .caixas {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .demo {
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+  }
+
+  .c1 {
+    background-color: red;
+  }
+
+  .c2 {
+    background-color: blue;
+    ;
+  }
+
+  .c3 {
+    background-color: green;
+  }
+
+  .girar {
+    transform: rotate(45deg);
+  }
+</style>
+
+<div id="app">
+  <div class="caixas">
+    <div class="demo" :style="meuEstilo"></div>
+    <div class="demo"></div>
+    <div class="demo"></div>
+  </div>
+  <hr>
+  <input type="text" v-model = "cor">
+  <hr>
+  <p> Largura: </p> <input type="number" v-model = "largura">
+  <p> Altura: </p> <input type="number" v-model = "altura">
+</div>
+
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      cor: 'green',
+      largura: 100,
+      altura: 0
+    },
+    computed: {
+      meuEstilo() {
+        return {
+          backgroundColor: this.cor,
+          width: this.largura + 'px',
+          height: this.altura + 'px',
+          transform: 'rotate(45deg)'
+        }
+      },
+    }
+  })
+</script>

@@ -1,0 +1,62 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<!--
+    Usa-se # para definir estilos para um id
+    Usa-se . para definir estilos para uma classe
+  -->
+<style>
+  .caixas {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .demo {
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+  }
+
+  .c1 {
+    background-color: red;
+  }
+
+  .c2 {
+    background-color: blue;
+  }
+
+  .c3 {
+    background-color: green;
+  }
+
+  .girar {
+    transform: rotate(45deg);
+  }
+</style>
+
+<div id="app">
+  <div class="caixas">
+    <div class="demo" :class = "[estilo1, {'girar': aplicarGirar}]" @click = "aplicarC1 = !aplicarC1"></div>
+    <div class="demo" :class = "[{ 'girar': aplicarGirar }]"></div>
+    <div class="demo" :class="[classeCSS, {'girar': aplicarGirar}]"></div>
+  </div>
+  <hr>
+  <!-- Fazendo com que o input text altere o dado classe css, este irá alterar a classe da box 3-->
+  <input type="text" v-model="classeCSS">
+  <button @click = "aplicarGirar = !aplicarGirar"> Aplicar Girar </button>
+</div>
+
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      aplicarC1: false,
+      aplicarGirar: false,
+      classeCSS: 'c1'
+    },
+    computed: {
+      estilo1() {
+        return { c1: this.aplicarC1, c2: !this.aplicarC1}
+      }
+    }
+  })
+</script>
