@@ -1,0 +1,35 @@
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue"></script>
+
+
+<div id="app">
+  <div>
+   <ul>
+     <li v-for="pessoa in pessoas">
+       <template v-for="(valor, chave, index) in pessoa">
+          <spam>
+            {{ chave }}: {{ valor }}
+          </spam>
+       </template>
+     </li>
+   </ul>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      cores: ['Vermelho', 'Verde', 'Azul', 'Amarelo'],
+      pessoas: [
+        { nome: 'Adriano', idade: 24, peso: 81 },
+        { nome: 'Ana', idade: 43, peso: 59 }
+      ]
+    }
+  })
+</script>
+
+<style>
+  ul {
+    list-style: none;
+  }
+</style>

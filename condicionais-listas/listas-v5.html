@@ -1,0 +1,33 @@
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue"></script>
+
+
+<div id="app">
+  <template>
+    <ul>
+      <li v-for="cor in cores" :key="cor"> {{ cor }} </li>
+    </ul>
+  </template>
+  <input type="text" v-model="novaCor">
+  <button @click="cores.push(novaCor); novaCor = ''"> Adicionar Cor</button>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      novaCor: '',
+      cores: ['Vermelho', 'Verde', 'Azul', 'Amarelo'],
+      pessoas: [
+        { nome: 'Adriano', idade: 24, peso: 81 },
+        { nome: 'Ana', idade: 43, peso: 59 }
+      ]
+    }
+  })
+</script>
+
+<style>
+  ul {
+    list-style: none;
+  }
+</style>
