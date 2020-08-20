@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>Matador de monstros</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://unpkg.com/vue"></script>
+
+</head>
+<body>
+  <div id="app">
+    <div class="panel scores">
+      <div class="jogadorMonstro"> 
+        <img v-if="!endGame || winGame" src="img/player.png">
+        <img v-if="endGame && !winGame" src="img/playerLose.png">
+        <div :style="lifeBarPlayer">
+          <br>
+        </div>
+        <p> {{ lifePlayer }}% </p>
+      </div>
+      <div class="jogadorMonstro"> 
+        <img v-if="!endGame || !winGame" src="img/monster.png" >
+        <img v-if="endGame && winGame" src="img/monsterLose.png">
+        <div :style="lifeBarMonster">
+          <br>
+        </div>
+        <p> {{ lifeMonster }}% </p>
+      </div>
+    </div>
+    <div class="panel buttons">
+      <div class="aux" v-if="startGame">
+        <button @click="newGame" class="btn btn-success"> Iniciar Jogo </button>
+      </div>
+      <div class="aux" v-else>
+        <button @click="attack" class="btn btn-primary"> ATAQUE </button>
+        <button @click="specialAttack" class="btn btn-info"> ATAQUE ESPECIAL </button>
+        <button @click="heal" class="btn btn-success"> CURAR </button>
+        <button @click="giveUp" class="btn btn-danger"> DESISTIR </button>
+      </div>
+    </div>
+    <div class="panel result" v-if="!endGame">
+      <template v-for="(phrase, contador) in historyGame">
+        <div v-if="contador%2 == 1" class="playerHistory">
+          {{ phrase }}
+        </div>
+        <div v-else class="monsterHistory">
+          {{ phrase }}
+        </div>
+      </template>
+    </div>
+    <div class="panel result" v-else>
+      <div class="winGame" v-if="winGame">
+        Parabéns você ganhou!
+      </div>
+      <div class="loseGame" v-else>
+        Você Perdeu :(
+      </div>
+    </div>
+    <div class="panel logs"></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
