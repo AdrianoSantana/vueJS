@@ -1,0 +1,31 @@
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+  <h1> {{ aula }} </h1>
+  <h1> {{ modulo }} </h1>
+  <button @click="alterarAula"> Alterar aula </button>
+  <button @click="alterarModulo"> Alterar modulo </button>
+  <span v-bind:title = "minhaMensagem">
+    Este é um span
+  </span>
+</div>
+
+<script>
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        aula: 'Aula x',
+        modulo: 'Instância',
+        minhaMensagem: 'eita oloco bixo'
+      },
+      methods: {
+        alterarAula() {
+          this.aula += '#'
+        },
+        alterarModulo() {
+          this.modulo += '*'
+        }
+      }
+    })
+</script>
