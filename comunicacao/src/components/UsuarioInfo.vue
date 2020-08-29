@@ -5,6 +5,7 @@
         <p>Nome do usuário: <strong>{{ usuario }}</strong></p>
         <p>Nome do usuário invertido: <strong>{{ inverterNome() }}</strong></p>
         <button @click="anonimoNome">Não divulgar nome</button>
+        <button @click="anonimoFN">Não divulgar nome (CALLBACK)</button>
     </div>
 </template>
 
@@ -14,7 +15,8 @@ export default {
         usuario: {
             type: String,
             required: true
-        }
+        },
+        anonimoFN: Function
     },
     methods: {
         inverterNome() {

@@ -9,6 +9,7 @@
         <div class="componentes">
             <app-usuario-info :usuario="nome"
             @navegacaoAnonima="nome = $event"
+            :anonimoFN="navegarAnonimo"
             />
             <app-usuario-editar />
         </div>
@@ -31,6 +32,9 @@ export default {
         alterarNome() {
             this.nome = 'Ana'
             this.nomeAlterado = true
+        },
+        navegarAnonimo() {
+            this.nome = 'Anônimo'
         }
     }
 }
