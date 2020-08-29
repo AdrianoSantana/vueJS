@@ -3,15 +3,21 @@
         <h1>Componente Usuário</h1>
         <p>Esse é um componente muito legal!</p>
         <p><Strong> {{ nome }} </Strong></p>
+        <p> Idade: <Strong> {{ idade }} </Strong></p>
         <button v-if="!nomeAlterado" @click="alterarNome">Alterar nome</button>
         <button v-else @click="nome = 'Adriano';nomeAlterado = false">Resetar nome</button>
         <hr>
         <div class="componentes">
-            <app-usuario-info :usuario="nome"
-            @navegacaoAnonima="nome = $event"
-            :anonimoFN="navegarAnonimo"
+            <app-usuario-info 
+                :usuario="nome"
+                @navegacaoAnonima="nome = $event"
+                :anonimoFN="navegarAnonimo"
+                :idade="idade"
             />
-            <app-usuario-editar />
+            <app-usuario-editar 
+                :idade="idade"
+                @idadeAlterada="alterarIdade"
+            />
         </div>
     </div>
 </template>
@@ -25,7 +31,8 @@ export default {
     data() {
         return {
             nome: 'Adriano',
-            nomeAlterado: false
+            nomeAlterado: false,
+            idade: 24
         }
     },
     methods: {
@@ -35,6 +42,9 @@ export default {
         },
         navegarAnonimo() {
             this.nome = 'Anônimo'
+        },
+        alterarIdade($event) {
+            this.idade = Number($event)
         }
     }
 }

@@ -3,7 +3,7 @@
         <h2>As Informações de Usuário</h2>
         <p>Vários detalhes...</p>
         <p>Nome do usuário: <strong>{{ usuario }}</strong></p>
-        <p>Nome do usuário invertido: <strong>{{ inverterNome() }}</strong></p>
+        <p> Idade do usuário: <strong>{{ idade }}</strong></p>
         <button @click="anonimoNome">Não divulgar nome</button>
         <button @click="anonimoFN">Não divulgar nome (CALLBACK)</button>
     </div>
@@ -16,7 +16,8 @@ export default {
             type: String,
             required: true
         },
-        anonimoFN: Function
+        anonimoFN: Function,
+        idade: Number
     },
     methods: {
         inverterNome() {
