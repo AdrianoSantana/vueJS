@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import barramento from '@/barramento'
+
 export default {
     props: {
         usuario: {
@@ -27,6 +29,11 @@ export default {
             this.usuario = 'Anônimo'
             this.$emit('navegacaoAnonima', this.usuario)
         }
+    },
+    created() {
+        barramento.quandoIdadeMudar(idadeNova => {
+            this.idade = idadeNova
+        })
     }
 }
 </script>

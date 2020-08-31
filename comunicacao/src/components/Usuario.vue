@@ -3,7 +3,6 @@
         <h1>Componente Usuário</h1>
         <p>Esse é um componente muito legal!</p>
         <p><Strong> {{ nome }} </Strong></p>
-        <p> Idade: <Strong> {{ idade }} </Strong></p>
         <button v-if="!nomeAlterado" @click="alterarNome">Alterar nome</button>
         <button v-else @click="nome = 'Adriano';nomeAlterado = false">Resetar nome</button>
         <hr>
@@ -16,7 +15,6 @@
             />
             <app-usuario-editar 
                 :idade="idade"
-                @idadeAlterada="alterarIdade"
             />
         </div>
     </div>

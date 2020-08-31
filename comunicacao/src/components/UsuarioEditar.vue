@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import barramento from '@/barramento'
+
 export default {
     data() {
         return {
@@ -16,7 +18,7 @@ export default {
     },
     methods: {
         alterarIdade() {
-            this.$emit('idadeAlterada', this.myValue)
+            barramento.alterarIdade(this.myValue)
             this.myValue = null
         }
     }
