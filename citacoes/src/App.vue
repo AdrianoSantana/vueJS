@@ -2,15 +2,17 @@
 	<div id="app">
 		<Citacoes />
 		<Sobre />
+		<Footer />
 	</div>
 </template>
 
 <script>
 import Citacoes from './components/Citacoes'
 import Sobre from './components/Sobre'
+import Footer from './components/Footer'
 
 export default {
-	components: { Citacoes, Sobre }
+	components: { Citacoes, Sobre, Footer }
 }
 </script>
 
