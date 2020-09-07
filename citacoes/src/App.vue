@@ -1,7 +1,12 @@
 <template>
 	<div id="app">
-		<Citacoes />
-		<Sobre />
+		<span>
+			<button @click="componenteRenderizar = 'Citacoes'">Exibir Citações</button>
+			<button @click="componenteRenderizar = 'Sobre'"> Exibir Sobre </button>
+		</span>
+		<keep-alive>
+			<component :is="componenteRenderizar" />
+		</keep-alive>
 		<Footer />
 	</div>
 </template>
@@ -12,7 +17,12 @@ import Sobre from './components/Sobre'
 import Footer from './components/Footer'
 
 export default {
-	components: { Citacoes, Sobre, Footer }
+	components: { Citacoes, Sobre, Footer },
+	data () {
+        return {
+            componenteRenderizar: 'Citacoes'
+        }
+  }
 }
 </script>
 
