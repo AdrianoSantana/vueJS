@@ -1,6 +1,12 @@
 <template>
 	<div id="app" class="container">
 		<h1>HTTP com Axios</h1>
+		<b-alert show dismissible v-for="mensagem in mensagens" 
+			:key="mensagem.texto" 
+			:variant="mensagem.tipo"
+		>
+			{{ mensagem.texto }}
+		</b-alert>
 		<b-card>
 			<b-form-group label="Nome">
 				<b-form-input type="text" size="lg"
@@ -30,6 +36,8 @@
 						<strong> Nome: </strong> {{ user.nome }} <br>
 						<strong> E-mail: </strong> {{ user.email }} <br>
 						<strong> Id: </strong> {{ user.id }} <br>
+						<b-button variant="warning" size="lg" @click="carregar(user.id)" class="ml-2"> Carregar </b-button>
+						<b-button variant="danger" size="lg" class="ml-2" @click="excluir(user.id)"> Excluir </b-button>
 					</b-list-group-item>
 				</b-list-group>
 			</template>
@@ -44,7 +52,8 @@
 export default {
 	data() {
 		return {
-			result: '',
+			mensagens: [],
+			id: null,
 			usuario: {
 				nome: '',
 				email: ''
@@ -53,24 +62,52 @@ export default {
 		}
 	},
 	methods: {
+		// Envia uma mensagem ao usuário
+		mensagem(msg, tipo) {
+			this.mensagens.push({
+				texto: msg,
+				tipo
+			})
+		},
+		// Salva os dados no firebase
 		salvar() {
 			this.$http.post('usuarios.json', {
 				nome: this.usuario.nome,
 				email: this.usuario.email
 			})
 				.then((result) => {
-					this.usuario.nome = null
-					this.usuario.email = null
-					this.result = 'Dados salvos com sucesso!'
-					setTimeout(() => this.result = null, 2000)
+					this.limpar()
+					this.atualizarDados()
+					this.mensagem('Dados salvos com sucesso!', 'success')
 				})
-				.catch((err) => this.result = 'Ocorreu um erro ao salvar os dados!')
+				.catch((err) => this.mensagem('Ocorreu um erro ao salvar os dados!', 'danger'))
 		},
+		// Carrega os dados do firebase
 		atualizarDados() {
 			this.$http.get('usuarios.json')
 				.then((result) => {
 					this.usuarios = []
 					this.usuarios = result.data
+					setTimeout(this.limpar(), 2000)
+				})
+				.catch((err) => console.log(err))
+		},
+		// Limpa os campos de input
+		limpar() {
+			this.usuario.nome = ''
+			this.usuario.email = ''
+			this.mensagens = []
+			this.id = null
+		},
+		carregar(id) {
+			this.id = id
+			this.usuario = { ...this.usuarios[id]}
+		},
+		excluir(id) {
+			this.$http.delete(`/usuarios/${id}.json`)
+				.then(() => {
+					this.mensagem('Dados excluidos com sucesso!', 'warning')
+					this.atualizarDados()
 				})
 				.catch((err) => console.log(err))
 		}
