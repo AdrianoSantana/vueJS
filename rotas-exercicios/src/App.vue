@@ -1,8 +1,14 @@
 <template>
 	<div id="app">
 		<h1>Rotas com VueRouter</h1>
-		<Menu />
-		<router-view />
+		<router-view name="menu"></router-view>
+		<transition 
+			enter-active-class="animated flash"
+			leave-active-class="animated rollOut"
+			 >
+				<router-view />
+		</transition>
+		
 	</div>
 </template>
 
