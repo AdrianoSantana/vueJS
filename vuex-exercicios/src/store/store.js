@@ -1,22 +1,18 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import carrinho from './modules/carrinho'
+import parametros from './modules/parametros'
+
+import * as getters from './getters'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    produtos: [
-    ]
+    nome: 'Maria',
+    sobrenome: 'Silvia'
   },
-  getters: {
-    valorTotal (state) {
-      return state.produtos.map(produto => produto.quantidade * produto.preco)
-        .reduce((total, atual) => total + atual, 0)
-    }
-  },
-  mutations: {
-    adicionarProduto (state, payload) {
-      state.produtos.push(payload) // payLoad são os dados que vão ser inseridos
-    }
-  }
+  getters,
+  modules: { carrinho, parametros }
 })

@@ -15,12 +15,24 @@
 
 <script>
 export default {
-    data() {
-        return {
-            quantidade: 0,
-            preco: 0
+ computed: {
+    quantidade : {
+        get () {
+            return this.$store.state.parametros.quantidade
+        },
+        set (novaQuantidade) {
+            this.$store.commit('setQuantidade', novaQuantidade)
+        }
+    },
+    preco : {
+        get () {
+            return this.$store.state.parametros.preco
+        },
+        set (novoPreco) {
+            this.$store.commit('setPreco', novoPreco)
         }
     }
+ }
 }
 </script>
 

@@ -2,9 +2,9 @@
     <Painel titulo="Loja Virtual" verde>
         <div class="loja">
             <span>Adicionar</span>
-            <input type="number" v-model.number="quantidade" min=0>
+            <input type="number" v-model.number="quantidade" min=1>
             <span>itens de <strong>R$</strong></span>
-            <input type="number" v-model.number="preco" min=0>
+            <input type="number" v-model.number="preco" min=1>
             <button @click="adicionar">Agora!</button>
         </div>
     </Painel>
@@ -12,18 +12,24 @@
 
 <script>
 
-import { mapMutations } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
     data() {
         return {
-            sequencia: 1,
-            quantidade: 1,
-            preco: 0,
+            sequencia: 1
+        }
+    },
+    computed: {
+        quantidade() {
+            return this.$store.state.parametros.quantidade
+        },
+        preco() {
+            return this.$store.state.parametros.preco
         }
     },
     methods: {
-        ...mapMutations(['adicionarProduto']),
+        ...mapActions('carrinho', ['adicionarProdutoAction']),
         adicionar () {
             const produto = {
                 id: this.sequencia,
@@ -32,7 +38,7 @@ export default {
                 preco: this.preco
             }
             this.sequencia++
-            this.adicionarProduto(produto)
+            this.adicionarProdutoAction(produto)
         }
     }
 }
